@@ -1,32 +1,30 @@
+
 #!/bin/bash
 
 LAST_STATE=""
 
 while true; do
+    CURRENT="normal"
 
-    WINDOW=$(xdotool getactivewindow 2>/dev/null)
-
-    if [ -n "$WINDOW" ]; then
-
+    while read -r WINDOW; do
         STATE=$(xprop -id "$WINDOW" _NET_WM_STATE 2>/dev/null)
 
-        if echo "$STATE" | grep -q "_NET_WM_STATE_FULLSCREEN"; then
+        if [[ "$STATE" == *"_NET_WM_STATE_FULLSCREEN"* ]]; then
             CURRENT="fullscreen"
+            break
+        fi
+    done < <(wmctrl -l | awk '{print $1}')
+
+    if [[ "$CURRENT" != "$LAST_STATE" ]]; then
+        if [[ "$CURRENT" == "fullscreen" ]]; then
+            polybar-msg cmd hide
         else
-            CURRENT="normal"
+            polybar-msg cmd show
         fi
 
-        if [ "$CURRENT" != "$LAST_STATE" ]; then
-
-            if [ "$CURRENT" = "fullscreen" ]; then
-                polybar-msg cmd hide
-            else
-                polybar-msg cmd show
-            fi
-
-            LAST_STATE="$CURRENT"
-        fi
+        LAST_STATE="$CURRENT"
     fi
 
     sleep 0.5
 done
+
