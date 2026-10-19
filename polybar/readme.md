@@ -1,9 +1,4 @@
-iniciar sessão:
-bash ~/.config/polybar/scripts/fullscreen.sh
-polybar &
-copyq
-
-iniciar sessão:
+Iniciar sessão:
 bash ~/.config/polybar/scripts/fullscreen.sh
 polybar &
 copyq
