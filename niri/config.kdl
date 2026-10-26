@@ -384,5 +384,6 @@ spawn-at-startup "noctalia" "--daemon"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 
 
-include "./noctalia.kdl"
 
+
+include "noctalia.kdl"

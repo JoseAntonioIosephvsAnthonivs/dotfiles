@@ -233,4 +233,8 @@ error-message {
 
 //@theme "/usr/share/rofi/themes/DarkBlue.rasi"
 
+//@theme "/usr/share/rofi/themes/dmenu.rasi"
+
+//@theme "/usr/share/rofi/themes/purple.rasi"
+
 @theme "/usr/share/rofi/themes/dmenu.rasi"
